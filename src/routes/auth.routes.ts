@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { AuthRequest } from "@/types/auth.types";
-import { registerUser, loginUser } from "@/controllers/auth.controller";
-import { authenticate } from "@/middleware/auth.middleware";
+import { AuthRequest } from "../types/auth.types";
+import { registerUser, loginUser } from "../controllers/auth.controller";
+import { authenticate } from "../middleware/auth.middleware";
 
 const router = Router();
 
