@@ -31,7 +31,7 @@ export const registerUser: RequestHandler<{}, any, RegisterDTO> = async (req, re
             { expiresIn: '24h' }
         ); { /* All token related activities could be bundled into a utils file. */}
 
-        res.status(200).json({
+        res.status(201).json({
             token,
             user: {
                 user: user.id,

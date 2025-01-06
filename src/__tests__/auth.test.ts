@@ -3,22 +3,23 @@ import { PrismaClient } from "@prisma/client";
 import jwt from 'jsonwebtoken';
 import express from 'express';
 import authRoutes from '../routes/auth.routes';
+import { authenticate } from "../middleware/auth.middleware";
 
 const app = express();
 app.use(express.json());
-app.use('api/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 
 const prisma = new PrismaClient();
 
 beforeAll(async () => {
     await prisma.user.deleteMany();
-    await prisma.$disconnect();
 });
 
 afterAll(async () => {
     await prisma.user.deleteMany();
     await prisma.$disconnect();
 });
+
 
 describe('Authenticate API', () => {
     const testUser = {
@@ -37,7 +38,7 @@ describe('Authenticate API', () => {
         });
 
         it('should not register duplicate email', async () => {
-            const response = await request(app).post('/api/auth/register').set(testUser);
+            const response = await request(app).post('/api/auth/register').send(testUser);
 
             expect(response.status).toBe(400);
         });
