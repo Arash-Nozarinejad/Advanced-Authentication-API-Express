@@ -3,7 +3,7 @@ import { AuthRequest } from "../types/auth.types";
 import { registerUser, loginUser } from "../controllers/auth.controller";
 import { authenticate } from "../middleware/auth.middleware";
 import { validate } from "../middleware/validation.middleware";
-import { registerValidation, loginValidation } from "@/validation/auth.validation";
+import { registerValidation, loginValidation } from "../validation/auth.validation";
 
 const router = Router();
 
