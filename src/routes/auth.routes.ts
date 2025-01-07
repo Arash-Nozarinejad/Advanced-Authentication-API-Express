@@ -8,8 +8,8 @@ import { authLimiter } from "../middleware/rate-limit.middleware";
 
 const router = Router();
 
-router.post('/login', validate(loginValidation), loginUser);
-router.post('/register', authLimiter, validate(registerValidation),registerUser);
+router.post('/login', authLimiter, validate(loginValidation), loginUser);
+router.post('/register', validate(registerValidation),registerUser);
 router.get('/me', authenticate, (req: AuthRequest, res) => {
     res.json({ user: req.user })
 });
